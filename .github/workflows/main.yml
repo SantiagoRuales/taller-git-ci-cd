@@ -26,7 +26,7 @@ jobs:
       # pero para un CI básico, solo verificamos que los archivos existan.
       - name: ✅ Verificar archivos principales
         run: |
-          if [ -f index.html ] && [ -f index.css ]; then
+          if [ -f home.html ] && [ -f styles.css ]; then
             echo "Archivos HTML y CSS encontrados. ¡CI Básico Superado!"
           else
             echo "Error: Faltan archivos index.html o index.css"
