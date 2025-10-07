@@ -1,4 +1,4 @@
-name: CI/CD Básico
+name: CI/CD con despliegue en GitHub Pages
 
 on:
   push:
@@ -25,5 +25,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Simulación de despliegue
-        run: echo "🚀 Artefactos listos para el despliegue en el entorno de Staging"
+      - name: Descargar repositorio
+        uses: actions/checkout@v3
+
+      - name: Publicar en GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
