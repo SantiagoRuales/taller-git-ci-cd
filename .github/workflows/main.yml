@@ -1,0 +1,29 @@
+name: CI/CD Básico
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Integración Continua (CI)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v3
+
+      - name: Verificar archivos requeridos
+        run: |
+          if [ -f "home.html" ] && [ -f "styles.css" ]; then
+            echo "✅ Archivos existen: home.html y styles.css"
+          else
+            echo "❌ Faltan archivos requeridos" && exit 1
+          fi
+
+  deploy:
+    name: Despliegue Continuo (CD)
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Simulación de despliegue
+        run: echo "🚀 Artefactos listos para el despliegue en el entorno de Staging"
